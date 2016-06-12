@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1464834133 source:/mnt/hgfs/E/documents/Project/iot/uboost/test/src/uboost_test.cpp
+	<iostream>
+	<stdlib.h>
+
+1464852193 source:/mnt/hgfs/E/documents/Project/iot/uboost/test/src/vector_test.cpp
+	<iostream>
+	"../../include/uboost.hpp"
+	"../../include/vector.hpp"
+	"../../include/list.hpp"
+
+1457593797 /mnt/hgfs/E/documents/Project/iot/uboost/include/uboost.hpp
+	"config.hpp"
+
+1457594284 /mnt/hgfs/E/documents/Project/iot/uboost/include/config.hpp
+	<stdint.h>
+	"port/avr-gcc/port.hpp"
+	"port/iar-gcc/port.hpp"
+
+1464855375 /mnt/hgfs/E/documents/Project/iot/uboost/include/vector.hpp
+	"config.hpp"
+	"uboost.hpp"
+	"iterator.hpp"
+
+1464841533 /mnt/hgfs/E/documents/Project/iot/uboost/include/iterator.hpp
+	"config.hpp"
+	"uboost.hpp"
+
+1465191433 /mnt/hgfs/E/documents/Project/iot/uboost/include/list.hpp
+	"config.hpp"
+	"uboost.hpp"
+	"iterator.hpp"
+
