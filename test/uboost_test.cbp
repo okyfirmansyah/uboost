@@ -32,6 +32,11 @@
 			<Add option="-Wall" />
 			<Add option="-std=c++11" />
 		</Compiler>
+		<Unit filename="../include/config.hpp" />
+		<Unit filename="../include/iterator.hpp" />
+		<Unit filename="../include/list.hpp" />
+		<Unit filename="../include/uboost.hpp" />
+		<Unit filename="../include/vector.hpp" />
 		<Unit filename="src/uboost_test.cpp" />
 		<Unit filename="src/vector_test.cpp" />
 		<Extensions>

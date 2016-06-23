@@ -70,14 +70,20 @@ class vector
 
 	// constructors
 	protected:
-	vector(T* __buff, size_type __cap)
+	explicit vector (T* __buff, size_type __cap)
 	:_buf(__buff),_capacity(__cap),_sz(0)
 	{};
 	public:
 	vector()=delete;
 	vector(const vector& x)=delete;
 	vector(vector&& x)=delete;
-	//vector(initializer_list<T> il);
+
+	// all below variant should be implemented in declared version
+	//explicit vector (T* __buff, size_type __cap, size_type n);
+    //explicit vector (T* __buff, size_type __cap, size_type n, const value_type& val);
+    //template <class InputIterator>
+    //  vector (T* __buff, size_type __cap, InputIterator first, InputIterator last);
+    //vector (T* __buff, size_type __cap, initializer_list<value_type> il);
 
 	//destructor
 	virtual ~vector()
@@ -139,7 +145,7 @@ class vector
 	void emplace_back (Args&&... args)
 	{
 		rangecheck(_sz);
-		new(&_buf[_sz++]) T(args...);
+		new(&_buf[_sz++]) T(uboost::forward<Args>(args)...);
 	};
 
 	//empty
@@ -246,12 +252,12 @@ class vector
 		return _sz;
 	}
 
+	//TODO: support this
 	//swap
-	void swap (vector& x)
-	{
-	    //TODO: support this
-        assert(false);
-	}
+	//void swap (vector& x)
+	//{
+    //    assert(false);
+	//}
 
 	private:
 	void rangecheck(int n)
@@ -501,7 +507,7 @@ class vector
 	{
 	    rangecheck(_sz);
 	    open_gap(position, 1);
-	    new(&position[0]) T(args...);
+	    new(&position[0]) T(uboost::forward<Args>(args)...);
 	    return position;
 	};
 
@@ -563,12 +569,13 @@ class vector
 	{
 	    return insert(position, 1, val);
 	};
-	template <class InputIterator>
-	iterator insert (const_iterator position, InputIterator first, InputIterator last)
-	{
-	    // !!!TODO: support this
-	    assert(false);
-	};
+
+	//!!!TODO: support this
+	//template <class InputIterator>
+	//iterator insert (const_iterator position, InputIterator first, InputIterator last)
+	//{
+	//    assert(false);
+	//};
 
 	iterator insert (const_iterator position, value_type&& val)
 	{
@@ -610,7 +617,7 @@ class vector:public uboost::vector<T>
 {
 	public:
 	// constructors
-	vector()
+	explicit vector()
 	:uboost::vector<T>((T*)_physBuf, Size){};
 
 	vector(const uboost::vector<T>& x)
@@ -625,7 +632,12 @@ class vector:public uboost::vector<T>
 	           move_iterator<typename uboost::vector<T>::iterator>(x.end()));
         x.clear();
 	};
-	//vector(initializer_list<T> il);
+	//!!!TODO support constructor variants:
+	//explicit vector (size_type n);
+    //explicit vector (size_type n, const value_type& val);
+    //template <class InputIterator>
+    //  vector (InputIterator first, InputIterator last);
+    //vector (initializer_list<value_type> il);
 
     vector& operator=(const uboost::vector<T>& x)
 	{
